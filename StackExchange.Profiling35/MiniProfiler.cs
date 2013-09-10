@@ -338,7 +338,7 @@ namespace StackExchange.Profiling
             return MiniProfilerExtensions.Step(Current, name, level);
         }
 
-        public static MvcHtmlString RenderIncludes()
+        public static string RenderIncludes()
         {
             return RenderIncludes(null);
         }
@@ -348,7 +348,7 @@ namespace StackExchange.Profiling
             return RenderIncludesAsString(null);
         }
 
-        public static MvcHtmlString RenderIncludes(RenderPosition? position = null, bool? showTrivial = null, bool? showTimeWithChildren = null, int? maxTracesToShow = null, bool? showControls = null, bool? useExistingjQuery = null, bool samplingOnly = false)
+        public static string RenderIncludes(RenderPosition? position = null, bool? showTrivial = null, bool? showTimeWithChildren = null, int? maxTracesToShow = null, bool? showControls = null, bool? useExistingjQuery = null, bool samplingOnly = false)
         {
             return UI.MiniProfilerHandler.RenderIncludes(Current, position, showTrivial, showTimeWithChildren, maxTracesToShow, showControls, useExistingjQuery);
         }
@@ -356,7 +356,7 @@ namespace StackExchange.Profiling
         public static string RenderIncludesAsString(RenderPosition? position = null, bool? showTrivial = null, bool? showTimeWithChildren = null, int? maxTracesToShow = null, bool? showControls = null, bool? useExistingjQuery = null, bool samplingOnly = false)
         {
             var mvcString = UI.MiniProfilerHandler.RenderIncludes(Current, position, showTrivial, showTimeWithChildren, maxTracesToShow, showControls, useExistingjQuery);
-            return mvcString.ToString();
+            return mvcString;
         }
 
         /// <summary>
@@ -517,9 +517,9 @@ namespace StackExchange.Profiling
         /// Returns an html-encoded string with a text-representation of <paramref name="profiler"/>; returns "" when profiler is null.
         /// </summary>
         /// <param name="profiler">The current profiling session or null.</param>
-        public static MvcHtmlString Render(this MiniProfiler profiler)
+        public static string Render(this MiniProfiler profiler)
         {
-            if (profiler == null) return MvcHtmlString.Empty;
+            if (profiler == null) return string.Empty;
 
             var text = new StringBuilder()
                 .Append(HttpUtility.HtmlEncode(Environment.MachineName)).Append(" at ").Append(DateTime.UtcNow).AppendLine();
@@ -537,7 +537,7 @@ namespace StackExchange.Profiling
                     for (int i = children.Count - 1; i >= 0; i--) timings.Push(children[i]);
                 }
             }
-            return MvcHtmlString.Create(text.ToString());
+            return text.ToString();
         }
     }
 }

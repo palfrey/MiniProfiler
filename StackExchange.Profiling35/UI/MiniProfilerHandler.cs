@@ -17,7 +17,7 @@ namespace StackExchange.Profiling.UI
     /// </summary>
     public class MiniProfilerHandler : IRouteHandler, IHttpHandler
     {
-        internal static MvcHtmlString RenderIncludes(MiniProfiler profiler, RenderPosition? position = null, bool? showTrivial = null, bool? showTimeWithChildren = null, int? maxTracesToShow = null, bool? showControls = null, bool? useExistingjQuery = null)
+        internal static string RenderIncludes(MiniProfiler profiler, RenderPosition? position = null, bool? showTrivial = null, bool? showTimeWithChildren = null, int? maxTracesToShow = null, bool? showControls = null, bool? useExistingjQuery = null)
         {
             string format = GetResource("include.partial.html");
 
@@ -61,7 +61,7 @@ namespace StackExchange.Profiling.UI
 
             }
 
-            return MvcHtmlString.Create(result);
+            return result;
         }
 
         /// <summary>
