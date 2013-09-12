@@ -321,6 +321,14 @@
             return Current.Step(name, level);
         }
 
+        public static string RenderIncludes() {
+            return RenderIncludes(null);
+        }
+
+        public static string RenderIncludesAsString() {
+            return RenderIncludesAsString(null);
+        }
+
         public static string RenderIncludes(RenderPosition? position = null, bool? showTrivial = null, bool? showTimeWithChildren = null, int? maxTracesToShow = null, bool? showControls = null, bool? startHidden = null)
         {
             return UI.MiniProfilerHandler.RenderIncludes(Current, position, showTrivial, showTimeWithChildren, maxTracesToShow, showControls, startHidden);
